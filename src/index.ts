@@ -3,6 +3,7 @@ import config from './config';
 
 import PreloadLogo from './scenes/PreloadLogo';
 import Preload from './scenes/Preload';
+import OpningScene from './scenes/Opning';
 import GameScene from './scenes/Game';
 
 new Phaser.Game(
@@ -10,6 +11,7 @@ new Phaser.Game(
     scene: [
       PreloadLogo,
       Preload,
+      OpningScene,
       GameScene
     ]
   })

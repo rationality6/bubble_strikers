@@ -1,6 +1,8 @@
 import PhaserSceneTool from "./PhaserSceneTool";
 
 class Preload extends PhaserSceneTool {
+  logo: Phaser.GameObjects.Image;
+
   constructor() {
     super("PreloadScene");
   }
@@ -13,9 +15,19 @@ class Preload extends PhaserSceneTool {
       frameHeight: 32,
     });
 
-    this.loadingImagesMockup();
+    this.load.spritesheet("kfx-idle", "assets/kfx_idle.png", {
+      frameWidth: 29,
+      frameHeight: 145,
+    });
 
-    // this.load.audio("jumpSound", "assets/sounds/jump.mp3");
+    this.load.image("cover", "assets/strikers_cover.jpg");
+
+    this.load.atlas('bubbles', 'assets/particles/bubbles.png', 'assets/particles/bubbles.json');
+    
+    this.load.image('sky', 'assets/ms3-sky.png');
+    // this.loadingImagesMockup();
+
+    this.load.audio("daytonaBackgroundMusic", "assets/sounds/daytona.mp3");
   }
 
   loadingImagesMockup() {
@@ -89,15 +101,22 @@ class Preload extends PhaserSceneTool {
   create() {
     this.cameras.main.fadeIn(1000, 255, 255, 255);
 
-    const logo = this.add.image(
-      this.gameWidth / 2 - 10,
-      this.gameHeight / 2 + 20,
-      "interpretLogoWithCat"
-    );
+    this.logo = this.add
+      .image(this.gameWidth / 2, this.gameHeight / 2, "interpretLogoWithCat")
+      .setScale(0.8);
 
     setTimeout(() => {
-      this.scene.start("GameScene");
+      this.cameras.main.fadeOut(1000, 255, 255, 255);
+    }, 1800);
+
+    setTimeout(() => {
+      this.scene.start("OpningScene");
     }, 3000);
+  }
+  update(time: number, delta: number): void {
+    if (time > 2000) {
+      this.logo.angle += 3;
+    }
   }
 }
 
