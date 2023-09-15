@@ -40,7 +40,7 @@ class GameScene extends PhaserSceneTool {
       fontFamily: "Arial",
       fontSize: 35,
       color: "#ffffff",
-    })
+    });
 
     this.emitter = this.add.particles(0, 0, "bubbles", {
       x: 100,
@@ -50,7 +50,7 @@ class GameScene extends PhaserSceneTool {
       rotate: { start: 0, end: 360 },
       speed: { min: 50, max: 100 },
       lifespan: 6000,
-      frequency: 10,
+      frequency: 20,
       blendMode: "ADD",
       gravityY: 110,
     });
@@ -76,7 +76,7 @@ class GameScene extends PhaserSceneTool {
   }
 
   update() {
-    this.scoreText.setText(this.score)
+    this.scoreText.setText(this.score);
     this.bg.tilePositionX -= 2;
 
     const bullets = this.bullets.getChildren();
@@ -90,10 +90,15 @@ class GameScene extends PhaserSceneTool {
             this.explode.emitParticleAt(particle.x, particle.y);
             this.score += 1;
             particle.kill();
+            this.cameras.main.shake(50, 0.01);
           });
         }
       }
     });
+
+    if (this.emitter.frequency > 1) {
+      this.emitter.frequency = 20 - this.score / 50;
+    }
   }
 }
 
