@@ -20,12 +20,17 @@ class Preload extends PhaserSceneTool {
       frameHeight: 145,
     });
 
+    this.load.spritesheet('bustshot', 'assets/bustshot.png', {
+      frameWidth: 69,
+      frameHeight: 145
+    });
+
     this.load.image("cover", "assets/strikers_cover.jpg");
 
     this.load.atlas('bubbles', 'assets/particles/bubbles.png', 'assets/particles/bubbles.json');
     
     this.load.image('sky', 'assets/ms3-sky.png');
-    // this.loadingImagesMockup();
+    
 
     this.load.audio("daytonaBackgroundMusic", "assets/sounds/daytona.mp3");
   }

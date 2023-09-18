@@ -8,4 +8,14 @@ export default (anims) => {
     frameRate: 10,
     repeat: -1,
   });
+
+  anims.create({
+    key: "bustshot",
+    frames: anims.generateFrameNumbers("bustshot", {
+      start: 0,
+      end: 15,
+    }),
+    frameRate: 10,
+    repeat: 0,
+  });
 };

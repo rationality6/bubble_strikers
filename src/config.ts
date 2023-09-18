@@ -1,7 +1,7 @@
 import Phaser from 'phaser';
 
 const SHARED_CONFIG = {
-  debug: false
+  debug: true
 }
 
 export default {

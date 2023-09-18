@@ -1,13 +1,21 @@
 import PhaserSceneTool from "./PhaserSceneTool";
 import Kfx from "../entities/Kfx";
 
+import Bullets from "../groups/Bullets";
+
 class GameScene extends PhaserSceneTool {
   kfx: any;
-  bg: any;
+  background: any;
   bullets: any;
+
+  bubbleEmitterFrequency: number = 30;
+
+  middleOfBust: boolean = false;
 
   score: number = 0;
   scoreText: any;
+
+  emitter: any;
 
   constructor() {
     super("GameScene");
@@ -15,26 +23,11 @@ class GameScene extends PhaserSceneTool {
 
   create() {
     this.kfx = new Kfx(this);
-    this.kfx.setDepth(1);
 
     this.bullets = new Bullets(this);
 
-    this.input.on("pointermove", (pointer) => {
-      this.kfx.x = pointer.worldX;
-    });
-    this.input.on("pointerdown", (pointer) => {
-      this.bullets.fireBullet(this.kfx.x, this.kfx.y);
-    });
-
-    this.bg = this.add.tileSprite(
-      0,
-      0,
-      this.gameHeight,
-      this.gameWidth - 10,
-      "sky"
-    );
-    this.bg.rotation = Math.PI / 2;
-    this.bg.setScale(3.2, 3.2);
+    this.setBackgroud();
+    this.setInputs();
 
     this.scoreText = this.add.text(16, 16, `Score: ${this.score}`, {
       fontFamily: "Arial",
@@ -50,10 +43,12 @@ class GameScene extends PhaserSceneTool {
       rotate: { start: 0, end: 360 },
       speed: { min: 50, max: 100 },
       lifespan: 6000,
-      frequency: 20,
+      frequency: this.bubbleEmitterFrequency,
       blendMode: "ADD",
       gravityY: 110,
     });
+
+    this.emitter.createC
 
     this.tweens.add({
       targets: this.emitter,
@@ -75,9 +70,31 @@ class GameScene extends PhaserSceneTool {
     });
   }
 
+  setBackgroud() {
+    this.background = this.add.tileSprite(
+      0,
+      0,
+      this.gameHeight,
+      this.gameWidth - 10,
+      "sky"
+    );
+    this.background.rotation = Math.PI / 2;
+    this.background.setScale(3.2, 3.2);
+  }
+
+  setInputs() {
+    this.input.on("pointermove", (pointer) => {
+      this.kfx.x = pointer.worldX;
+    });
+
+    this.input.on("pointerdown", (pointer) => {
+      this.bullets.fireBullet(this.kfx.x, this.kfx.y);
+    });
+  }
+
   update() {
     this.scoreText.setText(this.score);
-    this.bg.tilePositionX -= 2;
+    this.background.tilePositionX -= 5;
 
     const bullets = this.bullets.getChildren();
 
@@ -96,60 +113,15 @@ class GameScene extends PhaserSceneTool {
       }
     });
 
-    if (this.emitter.frequency > 1) {
-      this.emitter.frequency = 20 - this.score / 50;
+    const particles = this.emitter.overlap(this.kfx.body);
+    particles.forEach((particle) => {
+      console.log("hit");
+    })
+
+    if (this.emitter.frequency > 5) {
+      this.emitter.frequency = this.bubbleEmitterFrequency - this.score / 100;
     }
   }
 }
 
 export default GameScene;
-
-class Bullet extends Phaser.Physics.Arcade.Sprite {
-  constructor(scene, x, y) {
-    super(scene, x, y, "bullet");
-  }
-
-  fire(x, y) {
-    this.body.reset(x, y);
-
-    this.setActive(true);
-    this.setVisible(true);
-
-    this.setVelocityY(-900);
-  }
-
-  kill() {
-    this.setActive(false);
-    this.setVisible(false);
-  }
-
-  preUpdate(time, delta) {
-    super.preUpdate(time, delta);
-
-    if (this.y <= -32) {
-      this.kill();
-    }
-  }
-}
-
-class Bullets extends Phaser.Physics.Arcade.Group {
-  constructor(scene) {
-    super(scene.physics.world, scene);
-
-    this.createMultiple({
-      frameQuantity: 30,
-      key: "bullet",
-      active: false,
-      visible: false,
-      classType: Bullet,
-    });
-  }
-
-  fireBullet(x, y) {
-    let bullet = this.getFirstDead(true);
-
-    if (bullet) {
-      bullet.fire(x, y);
-    }
-  }
-}

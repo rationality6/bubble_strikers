@@ -7,8 +7,8 @@ class Kfx extends Phaser.Physics.Arcade.Sprite {
     scene.add.existing(this);
     scene.physics.add.existing(this);
 
-    this.setSize(45, 45);
-    this.setOffset(-9, 5);
+    this.setSize(25, 35);
+    this.setOffset(2, 5);
 
     initAnimations(this.scene.anims);
 
@@ -16,6 +16,9 @@ class Kfx extends Phaser.Physics.Arcade.Sprite {
 
     this.setScale(2.5);
     this.setCollideWorldBounds(true);
+
+    this.setDepth(1);
+    
     this.play("kfx-idle", true);
   }
 
