@@ -1,6 +1,9 @@
 import initAnimations from "../anims/kfxAnims";
 
 class Kfx extends Phaser.Physics.Arcade.Sprite {
+
+  health: number = 10;
+
   constructor(scene) {
     super(scene, 100, scene.gameHeight + 200, "kfx-idle");
 

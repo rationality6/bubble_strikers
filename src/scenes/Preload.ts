@@ -20,19 +20,31 @@ class Preload extends PhaserSceneTool {
       frameHeight: 145,
     });
 
-    this.load.spritesheet('bustshot', 'assets/bustshot.png', {
+    this.load.spritesheet("bustshot", "assets/bustshot.png", {
       frameWidth: 69,
-      frameHeight: 145
+      frameHeight: 145,
     });
 
     this.load.image("cover", "assets/strikers_cover.jpg");
 
-    this.load.atlas('bubbles', 'assets/particles/bubbles.png', 'assets/particles/bubbles.json');
-    
-    this.load.image('sky', 'assets/ms3-sky.png');
-    
+    this.load.atlas(
+      "bubbles",
+      "assets/particles/bubbles.png",
+      "assets/particles/bubbles.json"
+    );
+    this.load.image("star", "assets/particles/star3.png");
+
+    this.load.image("sky", "assets/ms3-sky.png");
+
+    this.load.image("pilot", "assets/girl_pilot.png");
 
     this.load.audio("daytonaBackgroundMusic", "assets/sounds/daytona.mp3");
+    this.load.audio("hitBooming", "assets/sounds/hit_booming.mp3");
+
+    this.load.image(
+      "nextPage",
+      "https://raw.githubusercontent.com/rexrainbow/phaser3-rex-notes/master/assets/images/arrow-down-left.png"
+    );
   }
 
   loadingImagesMockup() {
