@@ -1,4 +1,5 @@
 import PhaserSceneTool from "./PhaserSceneTool";
+
 import Kfx from "../entities/Kfx";
 
 import Bullets from "../groups/Bullets";
@@ -36,8 +37,8 @@ class GameScene extends PhaserSceneTool {
   }
 
   create() {
-    this.kfx = new Kfx(this);
-
+    this.kfx = new Kfx(this, 100, this.gameHeight + 40);
+    
     this.bullets = new Bullets(this);
 
     this.setBackgroud();
@@ -159,7 +160,7 @@ class GameScene extends PhaserSceneTool {
     });
   }
 
-  update() {
+  update(time: number, delta: number): void {
     this.background.tilePositionX -= 5;
 
     if (this.stageEnded) {
@@ -209,7 +210,7 @@ class GameScene extends PhaserSceneTool {
       this.cameras.main.shake(50, 0.01);
     });
 
-    if (this.emitter.frequency > 5) {
+    if (this.emitter.frequency > 3) {
       this.emitter.frequency = this.bubbleEmitterFrequency - this.score / 20;
     }
 

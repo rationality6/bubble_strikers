@@ -32,5 +32,10 @@ export default {
         mapping: "rexUI",
       },
     ],
+    // global: [
+    //   { key: 'SceneWatcher', plugin: PhaserSceneWatcherPlugin, start: true }
+    // ]
   },
 };
+
+

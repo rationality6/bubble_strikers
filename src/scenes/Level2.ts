@@ -34,7 +34,7 @@ class Level2Scene extends PhaserSceneTool {
   }
 
   create() {
-    this.kfx = new Kfx(this);
+    this.kfx = new Kfx(this, 100, this.gameHeight + 40);;
 
     this.bullets = new Bullets(this);
 
@@ -56,7 +56,7 @@ class Level2Scene extends PhaserSceneTool {
     });
     const fx = this.emitter.postFX.addBokeh(0.5, 10, 0.2);
 
-    this.explode = this.add.particles(0, 0, "bubbles", {
+    this.explode = this.add.particles(300, 100, "bubbles", {
       frame: "elec1",
       angle: { start: 0, end: 360, steps: 32 },
       lifespan: 1500,
@@ -66,7 +66,7 @@ class Level2Scene extends PhaserSceneTool {
       emitting: false,
     });
 
-    this.hitExplode = this.add.particles(0, 0, "bubbles", {
+    this.hitExplode = this.add.particles(300, 100, "bubbles", {
       frame: "redbubble",
       angle: { start: 0, end: 360, steps: 32 },
       lifespan: 800,
@@ -150,6 +150,7 @@ class Level2Scene extends PhaserSceneTool {
 
         if (particles.length > 0) {
           particles.forEach((particle) => {
+            console.log(particle.x)
             this.explode.emitParticleAt(particle.x, particle.y);
             this.score += 1;
             particle.kill();

@@ -1,17 +1,16 @@
 import initAnimations from "../anims/kfxAnims";
 
 class Kfx extends Phaser.Physics.Arcade.Sprite {
-
   health: number = 10;
 
-  constructor(scene) {
-    super(scene, 100, scene.gameHeight + 200, "kfx-idle");
+  constructor(scene: any, x: number, y: number, key: string) {
+    super(scene, x, y, "kfx-idle");
 
     scene.add.existing(this);
     scene.physics.add.existing(this);
 
-    this.setSize(25, 35);
-    this.setOffset(2, 5);
+    this.setSize(5, 5);
+    this.setOffset(12, 18);
 
     initAnimations(this.scene.anims);
 
@@ -21,13 +20,12 @@ class Kfx extends Phaser.Physics.Arcade.Sprite {
     this.setCollideWorldBounds(true);
 
     this.setDepth(1);
-    
+
     this.play("kfx-idle", true);
+    this.body.reset(x, y);
   }
 
-  update(...args: any[]): void {
-
-  }
+  update(...args: any[]): void {}
 }
 
 export default Kfx;

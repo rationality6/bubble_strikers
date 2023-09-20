@@ -1,4 +1,5 @@
 class PhaserSceneTool extends Phaser.Scene {
+
   get gameHeight() {
     return this.game.config.height as number;
   }
@@ -139,7 +140,7 @@ class PhaserSceneTool extends Phaser.Scene {
       textBox.start(content, 10);
     });
   }
-  
+
 }
 
 export default PhaserSceneTool;

@@ -1,6 +1,6 @@
-class Bullet extends Phaser.Physics.Arcade.Sprite {
+class CatCannon extends Phaser.Physics.Arcade.Sprite {
   constructor(scene, x, y) {
-    super(scene, x, y, "bullet");
+    super(scene, x, y, "cat-cannon");
 
     scene.add.existing(this);
     scene.physics.add.existing(this);
@@ -37,4 +37,4 @@ class Bullet extends Phaser.Physics.Arcade.Sprite {
   update() {}
 }
 
-export default Bullet;
+export default CatCannon;
