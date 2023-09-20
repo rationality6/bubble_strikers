@@ -150,7 +150,6 @@ class Level2Scene extends PhaserSceneTool {
 
         if (particles.length > 0) {
           particles.forEach((particle) => {
-            console.log(particle.x)
             this.explode.emitParticleAt(particle.x, particle.y);
             this.score += 1;
             particle.kill();
@@ -174,7 +173,7 @@ class Level2Scene extends PhaserSceneTool {
         this.kfxFXTween.play();
       }
 
-      this.sound.play("hitBooming", { volume: 0.1 });
+      this.sound.play("hitBooming", { volume: 0.3 });
       particle.kill();
       this.cameras.main.shake(50, 0.01);
     });

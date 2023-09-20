@@ -205,7 +205,7 @@ class GameScene extends PhaserSceneTool {
         this.kfxFXTween.play();
       }
 
-      this.sound.play("hitBooming", { volume: 0.1 });
+      this.sound.play("hitBooming", { volume: 0.3 });
       particle.kill();
       this.cameras.main.shake(50, 0.01);
     });

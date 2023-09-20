@@ -60,7 +60,7 @@ class OpningScene extends PhaserSceneTool {
     // );
 
     this.input.on("pointerdown", () => {
-      this.sound.add("daytonaBackgroundMusic", { volume: 0.3 }).play();
+      this.sound.add("daytonaBackgroundMusic", { volume: 0.1 }).play();
       this.scene.start("GameScene");
     });
   }

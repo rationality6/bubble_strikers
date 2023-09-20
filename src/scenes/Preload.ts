@@ -8,7 +8,7 @@ class Preload extends PhaserSceneTool {
   }
 
   preload() {
-    this.load.plugin('PhaserSceneWatcherPlugin', 'https://cdn.jsdelivr.net/npm/phaser-plugin-scene-watcher@6.0.0/dist/phaser-plugin-scene-watcher.umd.js', true);
+    // this.load.plugin('PhaserSceneWatcherPlugin', 'https://cdn.jsdelivr.net/npm/phaser-plugin-scene-watcher@6.0.0/dist/phaser-plugin-scene-watcher.umd.js', true);
 
     this.loadLoadingScreen();
 
@@ -129,8 +129,8 @@ class Preload extends PhaserSceneTool {
     }, 1800);
 
     setTimeout(() => {
-      // this.scene.start("OpningScene");
-      this.scene.start("Level2Scene");
+      this.scene.start("OpningScene");
+      // this.scene.start("Level2Scene");
       // this.scene.start("EndingScene");
     }, 3000);
   }
