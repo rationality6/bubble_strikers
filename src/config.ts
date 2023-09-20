@@ -3,7 +3,7 @@ import Phaser from "phaser";
 import UIPlugin from 'phaser3-rex-plugins/templates/ui/ui-plugin.js';
 
 const SHARED_CONFIG = {
-  debug: true,
+  debug: false,
 };
 
 export default {

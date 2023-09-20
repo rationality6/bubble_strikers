@@ -12,7 +12,7 @@ export default {
     );
   },
 
-  setStageClearRule() {
+  setStageClearRule(sceneName) {
     if (this.score >= 2000) {
       this.stageEnded = true;
       this.emitter.explode();
@@ -21,17 +21,17 @@ export default {
       this.addStageClearText();
 
       setTimeout(() => {
-        this.stageClearAnimations();
+        this.stageClearAnimations(sceneName);
       }, 6000);
     }
   },
 
-  stageClearAnimations() {
+  stageClearAnimations(sceneName) {
     this.kfx.setCollideWorldBounds(false);
     this.kfx.setVelocityY(-900);
 
     setTimeout(() => {
-      this.scene.start("Level2Scene");
+      this.scene.start(sceneName);
     }, 2000);
   },
 };

@@ -8,23 +8,28 @@ class Bullet extends Phaser.Physics.Arcade.Sprite {
     this.scene.events.on(Phaser.Scenes.Events.UPDATE, this.update, this);
 
     this.setDepth(1);
-    this.setScale(8);
+    this.setScale(3);
+
+    this.scene.anims.create({
+      key: "catLaying",
+      frames: this.anims.generateFrameNumbers("catLaying", {
+        start: 0,
+        end: 3,
+      }),
+      frameRate: 10,
+      repeat: -1,
+    });
+
+    this.play("catLaying")
   }
 
   fire(x, y) {
     this.body.reset(x, y);
 
+    this.setVelocityY(-700)
+
     this.setActive(true);
     this.setVisible(true);
-
-    this.scene.middleOfBust = true;
-
-    this.setVelocityY(-300);
-    this.play("bustshot");
-
-    setTimeout(() => {
-      this.scene.middleOfBust = false;
-    }, 1500);
   }
 
   kill() {

@@ -3,6 +3,8 @@ import Kfx from "../entities/Kfx";
 
 import Bullets from "../groups/Bullets";
 
+import commonMixin from "../mixins/commonMixin";
+
 class Level2Scene extends PhaserSceneTool {
   kfx: any;
   kfxFX: any;
@@ -27,6 +29,8 @@ class Level2Scene extends PhaserSceneTool {
 
   constructor() {
     super("Level2Scene");
+
+    Object.assign(this, commonMixin);
   }
 
   create() {
@@ -130,11 +134,6 @@ class Level2Scene extends PhaserSceneTool {
     });
   }
 
-  stageClearAnimations() {
-    this.kfx.setCollideWorldBounds(false);
-    this.kfx.setVelocityY(-900);
-  }
-
   update() {
     this.background.tilePositionX -= 5;
 
@@ -152,7 +151,7 @@ class Level2Scene extends PhaserSceneTool {
         if (particles.length > 0) {
           particles.forEach((particle) => {
             this.explode.emitParticleAt(particle.x, particle.y);
-            this.score += 10;
+            this.score += 1;
             particle.kill();
             this.cameras.main.shake(50, 0.01);
           });
@@ -180,29 +179,10 @@ class Level2Scene extends PhaserSceneTool {
     });
 
     if (this.emitter.frequency > 5) {
-      this.emitter.frequency = this.bubbleEmitterFrequency - this.score / 200;
+      this.emitter.frequency = this.bubbleEmitterFrequency - this.score / 20;
     }
 
-    if (this.score >= 4000) {
-      this.stageEnded = true;
-      this.emitter.explode();
-      this.emitter.stop();
-
-      this.add.text(
-        this.gameWidth / 2 - 200,
-        this.gameHeight / 2,
-        ["Stage", "Clear"],
-        {
-          fontFamily: "Arial",
-          fontSize: 75,
-          color: "#ffffff",
-        }
-      );
-
-      setTimeout(() => {
-        this.stageClearAnimations();
-      }, 8000);
-    }
+    this.setStageClearRule("EndingScene");
   }
 }
 

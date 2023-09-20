@@ -2,6 +2,7 @@ import PhaserSceneTool from "./PhaserSceneTool";
 import Kfx from "../entities/Kfx";
 
 import Bullets from "../groups/Bullets";
+import Laser from "../entities/Laser";
 
 import commonMixin from "../mixins/commonMixin";
 
@@ -12,6 +13,7 @@ class GameScene extends PhaserSceneTool {
 
   background: any;
   bullets: any;
+  laser: any;
 
   bubbleEmitterFrequency: number = 30;
 
@@ -141,7 +143,7 @@ class GameScene extends PhaserSceneTool {
         return;
       }
 
-      this.bullets.fireBullet(this.kfx.x, this.kfx.y);
+      this.bullets.fireBullet(this.kfx.x, this.kfx.y - 200);
 
       if (this.firstClickTime == 0) {
         this.firstClickTime = this.getTime();
@@ -180,6 +182,7 @@ class GameScene extends PhaserSceneTool {
           particles.forEach((particle) => {
             this.explode.emitParticleAt(particle.x, particle.y);
             this.score += 1;
+            // bullet.kill()
             particle.kill();
             this.cameras.main.shake(50, 0.01);
           });
@@ -207,10 +210,10 @@ class GameScene extends PhaserSceneTool {
     });
 
     if (this.emitter.frequency > 5) {
-      this.emitter.frequency = this.bubbleEmitterFrequency - this.score / 200;
+      this.emitter.frequency = this.bubbleEmitterFrequency - this.score / 20;
     }
 
-    this.setStageClearRule();
+    this.setStageClearRule("Level2Scene");
   }
 }
 
