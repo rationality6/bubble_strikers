@@ -161,7 +161,7 @@ class GameScene extends PhaserSceneTool {
   }
 
   update(time: number, delta: number): void {
-    this.background.tilePositionX -= 5;
+    this.background.tilePositionX -= 105;
 
     if (this.stageEnded) {
       return;

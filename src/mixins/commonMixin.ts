@@ -13,7 +13,7 @@ export default {
   },
 
   setStageClearRule(sceneName) {
-    if (this.score >= 2000) {
+    if (this.score >= 5000) {
       this.stageEnded = true;
       this.emitter.explode();
       this.emitter.stop();

@@ -17,9 +17,13 @@ class EndingScene extends PhaserSceneTool {
     }, 1800);
 
     this.add.text(
-      this.gameWidth / 2 - 155,
-      this.gameHeight / 2 + 120,
-      ["감사합니다 🥹🥹🥹", "   Bubble Strikers "],
+      this.gameWidth / 2 - 245,
+      this.gameHeight / 2 - 190,
+      [
+        "Thank you for playing.",
+        "Bubble Strikers Alpha Ended",
+        "해주셔서 감사합니다 🥹🥹🥹",
+      ],
       {
         fontFamily: "Arial",
         fontSize: 45,

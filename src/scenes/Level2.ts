@@ -52,7 +52,7 @@ class Level2Scene extends PhaserSceneTool {
       speed: { min: 200, max: 300 },
       lifespan: 7000,
       gravityY: 180,
-      quantity: 1,
+      quantity: 10,
     });
     const fx = this.emitter.postFX.addBokeh(0.5, 10, 0.2);
 
@@ -135,7 +135,7 @@ class Level2Scene extends PhaserSceneTool {
   }
 
   update() {
-    this.background.tilePositionX -= 5;
+    this.background.tilePositionX -= 105;
 
     if (this.stageEnded) {
       return;

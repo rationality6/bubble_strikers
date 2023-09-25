@@ -8,13 +8,13 @@ class OpningScene extends PhaserSceneTool {
     super("OpningScene");
 
     this.TEXT1 = `
-"KFX 의 수습 조종사의 마지막 시험날"
+"KFX 수습 조종사의 마지막 시험날"
 
 
-뭐라고? 2000개나 터트려야 패스라고?
+뭐라고? 5000개나 터트려야 패스라고?
 
 
-2000개가 장난인줄아나...
+5000개가 장난인줄아나...
 
 
 (숫자에 놀라지 말자.)
@@ -30,6 +30,9 @@ class OpningScene extends PhaserSceneTool {
 
 
 (깊게 숨을 들이마셨다가) 후 시작해보자.
+
+
+애프터버너 온!
 `;
   }
 
@@ -44,7 +47,7 @@ class OpningScene extends PhaserSceneTool {
 
     await this.textBoxRun({
       self: this,
-      name: "카나",
+      name: "김민주",
       content: this.TEXT1,
     });
 
