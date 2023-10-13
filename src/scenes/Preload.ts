@@ -40,13 +40,22 @@ class Preload extends PhaserSceneTool {
 
     this.load.image("pilot", "assets/girl_pilot.png");
 
-    this.load.audio("daytonaBackgroundMusic", "assets/sounds/daytona.mp3");
-    this.load.audio("hitBooming", "assets/sounds/hit_booming.mp3");
-
     this.load.image(
       "nextPage",
       "https://raw.githubusercontent.com/rexrainbow/phaser3-rex-notes/master/assets/images/arrow-down-left.png"
     );
+
+    this.loadAudios()
+  }
+
+  loadAudios() {
+    this.load.audio("daytonaBackgroundMusic", "assets/sounds/daytona.mp3");
+    this.load.audio("hitBooming", "assets/sounds/hit_booming.mp3");
+
+    // voice
+    this.load.audio("afterBunnerOn", "assets/sounds/afterbunner_on.mp3");
+    this.load.audio("savePeace", "assets/sounds/save_peace_voice_korea.mp3");
+    this.load.audio("tooMany", "assets/sounds/too_many.mp3");
   }
 
   loadingImagesMockup() {
@@ -129,11 +138,12 @@ class Preload extends PhaserSceneTool {
     }, 1800);
 
     setTimeout(() => {
-      this.scene.start("OpningScene");
+      this.scene.start("OpeningScene");
       // this.scene.start("Level2Scene");
       // this.scene.start("EndingScene");
     }, 3000);
   }
+  
   update(time: number, delta: number): void {
     if (time > 2000) {
       this.logo.angle += 3;

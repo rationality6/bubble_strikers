@@ -1,11 +1,11 @@
 import PhaserSceneTool from "./PhaserSceneTool";
 
-class OpningScene extends PhaserSceneTool {
+class OpeningScene extends PhaserSceneTool {
   cover: Phaser.GameObjects.Image;
 
   TEXT1: string;
   constructor() {
-    super("OpningScene");
+    super("OpeningScene");
 
     this.TEXT1 = `
 "KFX 수습 조종사의 마지막 시험날"
@@ -45,28 +45,21 @@ class OpningScene extends PhaserSceneTool {
 
     this.cover.setScale(1.6);
 
+    this.sound.play("tooMany", { volume: 0.5 });
+
     await this.textBoxRun({
       self: this,
       name: "김민주",
       content: this.TEXT1,
     });
 
-    // this.add.text(
-    //   this.gameWidth / 2 - 155,
-    //   this.gameHeight / 2 + 120,
-    //   ["Bubble Strikers", "   click to start"],
-    //   {
-    //     fontFamily: "Arial",
-    //     fontSize: 45,
-    //     color: "#ffffff",
-    //   }
-    // );
+    this.sound.add("afterBunnerOn", { volume: 0.5 }).play();
 
     this.input.on("pointerdown", () => {
-      this.sound.add("daytonaBackgroundMusic", { volume: 0.1 }).play();
+      this.sound.play("daytonaBackgroundMusic", { volume: 0.1 });
       this.scene.start("GameScene");
     });
   }
 }
 
-export default OpningScene;
+export default OpeningScene;

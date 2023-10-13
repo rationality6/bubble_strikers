@@ -23,6 +23,8 @@ export default {
       setTimeout(() => {
         this.stageClearAnimations(sceneName);
       }, 6000);
+
+      this.sound.play("savePeace", { volume: 1 })
     }
   },
 
